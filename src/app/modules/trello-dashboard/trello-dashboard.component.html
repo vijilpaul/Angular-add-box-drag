@@ -1,0 +1,14 @@
+<app-main-list-form></app-main-list-form>
+<div class="row d-flex justify-content-center">
+    <div class="col-sm-3" droppable *ngFor="let product of mainLists; let i = index">
+        <div class="mainList">
+            <h1>{{product.mainTitle}} <a (click) = "deleteList(i)">x</a></h1>
+            <div class="subList" draggable *ngFor="let sub of product.subList; let j = index">
+                <h4>{{sub.subTitle}} <a (click) = "deleteSubList(i, j)">x</a></h4>
+                <p>{{sub.subDescription}}</p>
+            </div>
+            <app-sublist-form mainlistIndex = "{{i}}"></app-sublist-form>
+        </div>
+    </div>
+</div>
+    

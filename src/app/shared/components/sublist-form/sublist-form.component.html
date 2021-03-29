@@ -1,0 +1,45 @@
+<div class="btn-subList"><button type="button" class="btn btn-primary" data-toggle="modal" [attr.data-target]="'#subList-' + mainlistIndex"> + </button></div>
+<!-- Modal -->
+<div class="modal fade" [attr.id]="'subList-' + mainlistIndex" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close" #closebutton>
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <form [formGroup]="subAddForm" (ngSubmit)="onSubmit()" #subListForm [attr.data-index]="mainlistIndex">
+                <div class="form-group">
+                    <input 
+                        type="text" 
+                        class="form-control w-100" 
+                        [ngClass]="{ 'is-invalid': isSubmitted && f.subTitle.errors }"
+                        formControlName="subTitle" 
+                        name="subTitle" 
+                        placeholder="Sub title">
+                    <div *ngIf="isSubmitted && f.subTitle.errors" class="invalid-feedback">
+                        <div *ngIf="f.subTitle.errors.required">Title is required</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input 
+                        type="text" 
+                        class="form-control w-100" 
+                        [ngClass]="{ 'is-invalid': isSubmitted && f.subDescription.errors }"
+                        formControlName="subDescription" 
+                        name="subDescription" 
+                        placeholder="Sub Description">
+                    <div *ngIf="isSubmitted && f.subDescription.errors" class="invalid-feedback">
+                        <div *ngIf="f.subDescription.errors.required">Description is required</div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary">Submit</button>
+                </div>    
+            </form>
+        </div>
+        
+        </div>
+    </div>
+</div>
